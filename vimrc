@@ -114,77 +114,77 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 " }}}
 " Vim Plug {{{
-call plug#begin('~/.vim/plugged')
-Plug 'bling/vim-airline'
-Plug 'derekwyatt/vim-scala'
-Plug 'elixir-editors/vim-elixir'
-Plug 'fatih/vim-go'
-Plug 'janko-m/vim-test'
-Plug 'keith/swift.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'moll/vim-node'
-Plug 'scrooloose/syntastic'
-Plug 'simnalamburt/vim-mundo'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vimwiki/vimwiki'
-call plug#end()
+" call plug#begin('~/.vim/plugged')
+" Plug 'bling/vim-airline'
+" Plug 'derekwyatt/vim-scala'
+" Plug 'elixir-editors/vim-elixir'
+" Plug 'fatih/vim-go'
+" Plug 'janko-m/vim-test'
+" Plug 'keith/swift.vim'
+" Plug 'kien/ctrlp.vim'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'moll/vim-node'
+" Plug 'scrooloose/syntastic'
+" Plug 'simnalamburt/vim-mundo'
+" Plug 'tpope/vim-abolish'
+" Plug 'tpope/vim-fugitive'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'vimwiki/vimwiki'
+" call plug#end()
 " }}}
 " airline {{{
-set laststatus=2
-let g:airline_theme = 'zenburn'
-let g:airline_left_sep = ''
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_sep = ''
+" set laststatus=2
+" let g:airline_theme = 'zenburn'
+" let g:airline_left_sep = ''
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_sep = ''
 " }}}
 " Custom Functions {{{
-function! <SID>ToggleNumber()
-    if(&relativenumber == 1)
-        set norelativenumber
-        set number
-    else
-        set relativenumber
-    endif
-endfunc
-
-" strips trailing whitespace at the end of files. this
-" is called on buffer write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
-    " save last search & cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-endfunc
-
-function! <SID>CleanFile()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %!git stripspace
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunc
-
-function! <SID>RunFile()
-    let ext = expand("%:e")
-    if(ext == "go") 
-        :GoRun
-    endif
-endfunc
-
-function! <SID>BuildFile()
-    let ext = expand("%:e")
-    if(ext == "go") 
-        :GoBuild
-    endif
-endfunc
+" function! <SID>ToggleNumber()
+"     if(&relativenumber == 1)
+"         set norelativenumber
+"         set number
+"     else
+"         set relativenumber
+"     endif
+" endfunc
+" 
+" " strips trailing whitespace at the end of files. this
+" " is called on buffer write in the autogroup above.
+" function! <SID>StripTrailingWhitespaces()
+"     " save last search & cursor position
+"     let _s=@/
+"     let l = line(".")
+"     let c = col(".")
+"     %s/\s\+$//e
+"     let @/=_s
+"     call cursor(l, c)
+" endfunc
+" 
+" function! <SID>CleanFile()
+"     " Preparation: save last search, and cursor position.
+"     let _s=@/
+"     let l = line(".")
+"     let c = col(".")
+"     " Do the business:
+"     %!git stripspace
+"     " Clean up: restore previous search history, and cursor position
+"     let @/=_s
+"     call cursor(l, c)
+" endfunc
+" 
+" function! <SID>RunFile()
+"     let ext = expand("%:e")
+"     if(ext == "go") 
+"         :GoRun
+"     endif
+" endfunc
+" 
+" function! <SID>BuildFile()
+"     let ext = expand("%:e")
+"     if(ext == "go") 
+"         :GoBuild
+"     endif
+" endfunc
 " }}}
